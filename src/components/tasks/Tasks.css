@@ -1,0 +1,13 @@
+.block {
+  display: inline-block;
+  position: relative;
+  background: #fff;
+  padding: 20px 0 0;
+  color: #3e3a4e;
+  font-size: 14px;
+  user-select: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
+  width: 383px;
+  height: 396px;
+}

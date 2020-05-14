@@ -1,10 +1,10 @@
 import { Component } from 'vue-property-decorator';
-import { VueComponent } from '../shims-vue';
+import { VueComponent } from '@/shims-vue';
 
-import styles from './Block.css?module'
+import styles from './Tasks.css?module'
 
 @Component
-export default class HelloWorld extends VueComponent {
+export default class Tasks extends VueComponent {
 
   render() {
     return (
