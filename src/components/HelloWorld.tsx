@@ -16,10 +16,7 @@ export default class HelloWorld extends VueComponent<Props> {
   render() {
     return (
       <div class={styles.hello}>
-        <h1>{ this.msg }</h1>
-        <p>
-          ...
-        </p>
+        123test
       </div>
     )
   }
