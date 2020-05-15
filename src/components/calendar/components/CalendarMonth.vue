@@ -44,11 +44,14 @@ interface Day {
 let defaultDate = new Date()
 let defaultMonth = defaultDate.getMonth()
 let defaultYear = defaultDate.getFullYear()
+let defaultDay = defaultDate.getDate()
+
 
 @Component
 export default class VlCalendarMonth extends Vue {
   @Prop({ default: defaultMonth }) month!: number
   @Prop({ default: defaultYear }) year!: number
+  @Prop({ default: defaultDay }) day!: number
   @Prop({ default: () => {} }) isSelected!: Function
   @Prop({ default: () => {} }) isDisabled!: Function
 
@@ -93,18 +96,12 @@ export default class VlCalendarMonth extends Vue {
   calculateClasses(days: Array<Day>) {
     days.forEach((day: Day) => {
       day.day = this.getDayNumber(day.num)
-      const date = this.getDate(day.num)
-
-      if (this.isSelected && this.isSelected(date)) {
+      const date = (this.getDate(day.num))
+      const dateToCheckTasks = new Date(date)
+ 
+  
+      if (this.isSelected && this.isSelected(dateToCheckTasks).length) {
         day.class.push('selected')
-
-        if (!this.isSelected(this.getDate(day.num - 1))) {
-          day.class.push('selected--first')
-        }
-
-        if (!this.isSelected(this.getDate(day.num + 1))) {
-          day.class.push('selected--last')
-        }
       }
 
       if (this.isDisabled && this.isDisabled(date)) {

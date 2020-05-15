@@ -12,17 +12,16 @@ const VuexModule = createModule({
 
 export class TasksStore extends VuexModule {
   private tasks:Array<Task> = []
-
+  
   @mutation addTask(task: Task) {
     this.tasks.push(task)
   }
 
   get tasksByDate() {
-    return(date:Date) => {
-      return [{
-        text: '123',
-        date: date
-      }]
+    return (date:Date) => {
+      return this.tasks.filter((task) => {
+        return (task.date.toDateString() === date.toDateString())
+      })
     }
   }
 }

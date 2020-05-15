@@ -1,7 +1,8 @@
 <template>
   <VlCalendarMonth
-    :current-date="parseDate(CurrentDate)"
-    @update:date="(date) => $emit('update:date', formatDate(date))"
+    :current-date="CurrentDate"
+    :is-selected="isSelected"
+    @update:date="(date) => $emit('update:date', date)"
   />
 </template>
 
@@ -10,9 +11,7 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import VlCalendarMonth from './components/CalendarMonth.vue'
 import { Prop } from 'vue-property-decorator'
-import dayjs from 'dayjs'
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-dayjs.extend(customParseFormat)
+
 
 @Component({
   components: {
@@ -21,14 +20,7 @@ dayjs.extend(customParseFormat)
 })
 export default class CalendarOneMonth extends Vue {
   @Prop({ default: null }) CurrentDate!: string
-
-  formatDate(date: string) {
-    return dayjs(date).format('DD.MM.YYYY')
-  }
-
-  parseDate(date: string) {
-    return dayjs(date, 'DD.MM.YYYY').format('YYYY-MM-DD')
-  }
+  @Prop({ default: () => {} }) isSelected!: Function
 }
 </script>
 

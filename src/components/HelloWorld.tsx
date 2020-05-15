@@ -5,7 +5,7 @@ import styles from './HelloWorld.css?module'
 import CalendarOneMonth from '@/components/calendar/CalendarOneMonth.vue'
 import Tasks from '@/components/tasks/Tasks'
 
-import { TasksStore } from "@/store/tasks.store";
+import { storeTasks } from "@/store/index";
 
 interface Props {
   msg: string
@@ -18,13 +18,22 @@ export default class HelloWorld extends VueComponent<Props> {
   private msg!: string;
 
   get store() {
-    return TasksStore
+    return storeTasks
+  }
+
+  created() {
+    this.store.addTask({
+      text: "just now created",
+      date: new Date()
+    })
   }
 
   render() {
     return (
       <div class={styles.hello}>
-        <CalendarOneMonth />
+        <CalendarOneMonth
+          is-selected={this.store.tasksByDate}
+        />
         <Tasks class={styles.tasks}/>
       </div>
     )
