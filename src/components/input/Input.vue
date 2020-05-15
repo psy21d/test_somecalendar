@@ -11,6 +11,7 @@
         ...$listeners,
         input: (event) => $emit('input', event.target.value)
       }"
+      v-on:keyup.13="$emit('enter', value)"
     >
     <div class="label">
       {{ label }}

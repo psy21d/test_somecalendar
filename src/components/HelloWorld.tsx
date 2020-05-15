@@ -42,6 +42,7 @@ export default class HelloWorld extends VueComponent<Props> {
   }
 
   addTask(event: string) {
+    console.log('add')
     this.store.addTask({
       text: event,
       date: this.currentDate
@@ -66,7 +67,7 @@ export default class HelloWorld extends VueComponent<Props> {
               label="добавить задачу"
               v-model={this.addTaskValue}
               type="text"
-              onEnter={this.addTask}
+              onenter={this.addTask}
             />
            </div>
         </Tasks>
