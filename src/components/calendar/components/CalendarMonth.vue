@@ -41,10 +41,14 @@ interface Day {
   class: Array<string>
 }
 
+let defaultDate = new Date()
+let defaultMonth = defaultDate.getMonth()
+let defaultYear = defaultDate.getFullYear()
+
 @Component
 export default class VlCalendarMonth extends Vue {
-  @Prop({ default: 0 }) month!: number
-  @Prop({ default: 0 }) year!: number
+  @Prop({ default: defaultMonth }) month!: number
+  @Prop({ default: defaultYear }) year!: number
   @Prop({ default: () => {} }) isSelected!: Function
   @Prop({ default: () => {} }) isDisabled!: Function
 

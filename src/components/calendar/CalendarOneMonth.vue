@@ -1,5 +1,5 @@
 <template>
-  <VlDaySelector
+  <VlCalendarMonth
     :current-date="parseDate(CurrentDate)"
     @update:date="(date) => $emit('update:date', formatDate(date))"
   />
@@ -8,7 +8,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import VlDaySelector from './components/DaySelector.vue'
+import VlCalendarMonth from './components/CalendarMonth.vue'
 import { Prop } from 'vue-property-decorator'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
@@ -16,7 +16,7 @@ dayjs.extend(customParseFormat)
 
 @Component({
   components: {
-    VlDaySelector
+    VlCalendarMonth
   }
 })
 export default class CalendarOneMonth extends Vue {
@@ -33,7 +33,7 @@ export default class CalendarOneMonth extends Vue {
 </script>
 
 <style>
-.vl-calendar {
+.vl-calendar-month {
   display: inline-block;
   position: relative;
   background: #fff;
@@ -45,6 +45,7 @@ export default class CalendarOneMonth extends Vue {
   border-radius: 10px;
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
   width: 383px;
+  height: 400px;
 }
 
 .vl-calendar__month {
@@ -126,6 +127,8 @@ export default class CalendarOneMonth extends Vue {
 
 .vl-calendar-month__day.another-month {
   color: #a6a6a6;
+  opacity: 0;
+  cursor: auto;
 }
 
 .vl-calendar-month__day.selected.another-month {
