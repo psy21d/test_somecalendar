@@ -53,7 +53,8 @@ export default class CalendarOneMonth extends Vue {
 
 .vl-calendar-month__title {
   margin-bottom: 20px;
-  text-align: center;
+  text-align: left;
+  padding-left: 20px;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
@@ -110,11 +111,18 @@ export default class CalendarOneMonth extends Vue {
 }
 
 .vl-calendar-month__day.selected {
-  background: #c83f3a;
+  background: #00ccff;
   color: #fff;
   font-weight: normal;
-  background-color: rgba(232, 25, 72, 0.1);
-  color: #ab3030;
+  color: #ffffff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.vl-calendar-month__day.has-tasks {
+  color: #c00;
 }
 
 .vl-calendar-month__day.another-month {
@@ -127,13 +135,4 @@ export default class CalendarOneMonth extends Vue {
   color: rgba(171, 48, 48, 0.5);
 }
 
-.vl-calendar-month__day.selected--first {
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-
-.vl-calendar-month__day.selected--last {
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
 </style>

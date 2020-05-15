@@ -9,7 +9,7 @@ export default class Tasks extends VueComponent {
   render() {
     return (
       <div class={ styles.block }>
-        <slot />
+        {this.$slots.default}
       </div>
     )
   }

@@ -7,3 +7,18 @@
 .tasks {
   margin-left: 20px;
 }
+
+.taskshead {
+  padding-left: 20px;
+  padding-bottom: 20px;
+  font-size:18px;
+}
+
+.listitem {
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+
+.checkboxitem {
+  padding-right: 20px;
+}
