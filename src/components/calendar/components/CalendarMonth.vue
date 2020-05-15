@@ -20,7 +20,7 @@
         :key="day.num"
         class="vl-calendar-month__day"
         :class="day.class.join(' ')"
-        @click="$emit('input', getDate(day.num))"
+        @click="$emit('update:date', getRealDate(day.num))"
       >
         {{ day.day }}
       </span>
@@ -44,14 +44,13 @@ interface Day {
 let defaultDate = new Date()
 let defaultMonth = defaultDate.getMonth()
 let defaultYear = defaultDate.getFullYear()
-let defaultDay = defaultDate.getDate()
 
 
 @Component
 export default class VlCalendarMonth extends Vue {
   @Prop({ default: defaultMonth }) month!: number
   @Prop({ default: defaultYear }) year!: number
-  @Prop({ default: defaultDay }) day!: number
+  @Prop() currentDate!: Date
   @Prop({ default: () => {} }) isSelected!: Function
   @Prop({ default: () => {} }) isDisabled!: Function
 
@@ -85,6 +84,10 @@ export default class VlCalendarMonth extends Vue {
     return formatDate(day, this.month, this.year)
   }
 
+  getRealDate(day: number) {
+    return new Date(this.year, this.month, day)
+  }
+
   getDayNumber(day: number) {
     return new Date(this.year, this.month, day).getDate()
   }
@@ -98,10 +101,13 @@ export default class VlCalendarMonth extends Vue {
       day.day = this.getDayNumber(day.num)
       const date = (this.getDate(day.num))
       const dateToCheckTasks = new Date(date)
- 
-  
-      if (this.isSelected && this.isSelected(dateToCheckTasks).length) {
+      
+      if (this.currentDate.toDateString() === this.getRealDate(day.day).toDateString()) {
         day.class.push('selected')
+      } 
+      
+      if (this.isSelected && this.isSelected(dateToCheckTasks).length) {
+        day.class.push('has-tasks')
       }
 
       if (this.isDisabled && this.isDisabled(date)) {

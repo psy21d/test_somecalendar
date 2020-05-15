@@ -16,6 +16,7 @@ export default class HelloWorld extends VueComponent<Props> {
 
   @Prop()
   private msg!: string;
+  private currentDate = new Date()
 
   get store() {
     return storeTasks
@@ -24,8 +25,12 @@ export default class HelloWorld extends VueComponent<Props> {
   created() {
     this.store.addTask({
       text: "just now created",
-      date: new Date()
+      date: this.currentDate
     })
+  }
+
+  selectDate(event: Date) {
+    this.currentDate = event
   }
 
   render() {
@@ -33,6 +38,8 @@ export default class HelloWorld extends VueComponent<Props> {
       <div class={styles.hello}>
         <CalendarOneMonth
           is-selected={this.store.tasksByDate}
+          current-date={this.currentDate}
+          onDateSelect={this.selectDate}
         />
         <Tasks class={styles.tasks}/>
       </div>

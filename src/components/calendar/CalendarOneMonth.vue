@@ -2,7 +2,7 @@
   <VlCalendarMonth
     :current-date="CurrentDate"
     :is-selected="isSelected"
-    @update:date="(date) => $emit('update:date', date)"
+    @update:date="(date) => { $emit('dateSelect', date) }"
   />
 </template>
 
